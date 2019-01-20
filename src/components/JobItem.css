@@ -1,0 +1,57 @@
+.job-item{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 85%;
+  margin: 0 auto;
+  padding: 10px;
+  border-bottom: 1px solid #c8d0d7;
+}
+
+.job-item:hover{
+  border: 1px solid rgba(92, 190, 254, 1);
+}
+
+.left, .right{
+  display: flex;
+  flex-direction: column;
+}
+
+.left{
+  align-items: flex-start;
+}
+
+.right{
+  width: 200px;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.job-location{
+  margin: 16px 0;
+}
+
+.job-location svg{
+  vertical-align: bottom;
+}
+
+.job-title{
+  text-transform: capitalize;
+  margin: 16px 0;
+}
+
+.job-company{
+  font-size: 1rem;
+  margin: 0 0 10px 0;
+}
+
+/* Must use !important to override material UI */
+.type-label{
+  color: #fff !important;
+  background-color: #337ab7 !important;
+  width: 80px;
+  font-weight: bold;
+  height: 22px !important;
+}

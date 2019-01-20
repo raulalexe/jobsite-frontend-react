@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #55595c;
+  font-size: 16px;
+}
+
+h2{
+  font-size: 2.25rem;
+}
+
+
+h4{
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h5{
+  color: #7E8890;
+}
+
+a{
+  text-decoration: none;
+  color: #55595c;
+}
+
+/* Override Material UI with !important */
+.progress-spinner{
+  width: 80px !important;
+  height: 80px !important;
+  
+}
+
+.progress-spinner-wrapper{
+  width: 100%;
+  text-align: center;
+}
+
+.grey{
+  color: #7E8890;
+}
+
+.blue{
+  color: #337ab7;
+}
+
+.emphasized{
+  font-weight: 500;
+}
+
+.bold{
+  font-weight: bold;
+}

@@ -1,0 +1,64 @@
+.job-page-wrapper{
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.progress-spinner-wrapper{
+  margin: 100px auto;
+}
+
+.job-meta{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.left{
+  justify-content: flex-start;
+  flex: 1 0 auto;
+}
+
+.right{
+  justify-content: flex-end;
+  flex: 1 0 auto;
+  max-width: 35%;
+}
+
+.job-location{
+  margin: 0 0 10px 0;
+}
+
+.job-source a, .job-date{
+  display: flex;
+  align-items: center;
+  margin: 0 0 5px 0;
+}
+
+.job-source span, .job-date span{
+  margin-left: 5px;
+}
+
+.job-source a:hover{
+  color: #000;
+}
+
+.company{
+  margin-bottom: 0;
+}
+
+/* Use !important to override material ui */
+.type-label{
+  height: 22px !important;
+}
+
+.job-description{
+  margin-top: 25px; 
+}
+
+.buttons button{
+  min-width: 150px;
+  height: 50px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin: 30px 6px;
+}
