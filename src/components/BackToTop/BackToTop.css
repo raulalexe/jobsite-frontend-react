@@ -1,0 +1,24 @@
+.back-to-top,
+.back-to-top:hover,
+a.back-to-top,
+a:visited.back-to-top {
+    margin: 0 0 7px 0;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-size: 22px;
+    color: #FFF;
+    background-color: #337AB7;
+    border-radius: 8px;
+    border: 6px solid #337AB7;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.back-to-top .icon{
+  width: 35px;
+  height: 35px;
+}

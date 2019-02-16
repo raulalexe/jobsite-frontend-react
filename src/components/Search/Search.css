@@ -1,0 +1,38 @@
+.language-picker{
+  width: 160px;
+}
+
+.search-form{
+  margin-top: 66px;
+}
+
+.search-btn {
+  height: 56px;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  margin-left: 5px;
+}
+
+.card-style {
+  padding: 10px 10px 10px 15px;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form .input-inner-icon svg{
+  fill: rgba(51, 122, 183,.9)
+}
+
+
+@media screen and (max-width: 768px){
+  .card-style{
+    flex-direction: column;
+    width: 80%;
+  }
+  .card-style .form-input:not(:first-child){
+    width: 100%;
+    margin: 5px 0 0 0;
+  }
+}

@@ -4,7 +4,7 @@ import { ConditionalDisplayProps } from 'src/Models';
 const ConditionalDisplay = (props: ConditionalDisplayProps) => {
   return (
     props.showCondition 
-      ? <div>{props.children}</div>
+      ? <div className={props.className ? props.className : ''}>{props.children}</div>
       : null
   );
 }

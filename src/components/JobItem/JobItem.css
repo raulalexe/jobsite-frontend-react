@@ -21,12 +21,14 @@
 
 .left{
   align-items: flex-start;
+  max-width: 70%;
 }
 
 .right{
   width: 200px;
   align-items: flex-end;
   text-align: right;
+  justify-content: flex-start;
 }
 
 .job-location{

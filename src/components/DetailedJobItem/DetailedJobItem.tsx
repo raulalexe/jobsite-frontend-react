@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Chip, CircularProgress, Button } from '@material-ui/core';
 import { LocationOn, CalendarToday, Link as LinkIcon } from '@material-ui/icons';
 import { useState, useEffect } from 'react';
-import { DetailedJobItemModel } from '../Models';
+import { DetailedJobItemModel } from '../../Models';
 import { API_URL } from 'src/Models';
 import './DetailedJobItem.css';
 import { Link } from 'react-router-dom';
+import { scrollToHeaderTitle } from 'src/utils';
 
 const DetailedJobItem = (props: any) => {
   const [job, setJob] = useState({} as DetailedJobItemModel);
@@ -13,13 +14,14 @@ const DetailedJobItem = (props: any) => {
   useEffect(() => {
     (async () => {
       const resp = await fetch(`${API_URL}/job/${props.match.params.jobId}`);
-    const jobData = await resp.json();
-    setJob(jobData);
+      const jobData = await resp.json();
+      setJob(jobData);
+      scrollToHeaderTitle();
     })();
   }, [job.id]);
 
   return (
-    <div className='job-page-wrapper'>
+    <div className='job-page-wrapper' id='job-detailed-item'>
       { job.id
         ? (
           <div className='job-page'>
@@ -39,7 +41,7 @@ const DetailedJobItem = (props: any) => {
                   : ''
                 }
                 <div className="job-date">
-                  <CalendarToday /> <span>{job.postDate}</span>
+                  <CalendarToday /> <span>{new Date(job.postDate).toDateString()}</span>
                 </div>  
                 <div className="job-source">
                   <a href={job.url}>
@@ -54,11 +56,11 @@ const DetailedJobItem = (props: any) => {
 
             <div className="buttons">
               <a href={job.url} target="blank">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="secondary">
                   Apply
                 </Button>
               </a>
-              <Link to='/jobs'>
+              <Link to='/'>
                 <Button variant="outlined" color="default">
                   Back to search
                 </Button>

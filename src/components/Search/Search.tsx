@@ -2,44 +2,28 @@ import * as React from "react";
 import { TextField, InputAdornment, MenuItem, Button, Card } from "@material-ui/core";
 import { Search as SearchIcon, LocationOn, Flag } from "@material-ui/icons";
 import { useState, useEffect } from 'react';
-import { API_URL, SearchData, LOCALSTORAGE_KEY } from 'src/Models';
-import { SearchProps, DEFAULT_LANGUAGE } from '../Models';
+import { API_URL, SearchData } from 'src/Models';
+import { SearchProps, DEFAULT_LANGUAGE } from '../../Models';
+import './Search.css';
 
 const Search = (props: SearchProps) => {
-  const searchFormStyle = {
-    marginTop: "66px"
-  };
-
-  const searchBtnStyle = {
-    height: "56px",
-    backgroundColor: '#337ab7',
-    borderColor: '#2e6da4'
-  };  
-
-  const cardStyle = {
-    padding: '10px 0',
-    maxWidth: '800px',
-    margin: '0 auto'
-  }
+  
   const defaultLanguage = { label: "Any Language", value: DEFAULT_LANGUAGE };
 
-  const getSavedSearchData = () => {
-    const savedSearchData = localStorage.getItem(LOCALSTORAGE_KEY);
-    const parsed: SearchData =  savedSearchData ? JSON.parse(savedSearchData) : { searchText: '', location: '', language: ''};
-    // Set '' to prevent corrupted data sending undefined
-    parsed.language = parsed.language ? parsed.language : '';
-    parsed.searchText = parsed.searchText ? parsed.searchText : '';
-    parsed.location = parsed.location ? parsed.location : '';
-    return parsed;
-  }
+  const handleKeyPress = (event: any) => {
+    if (event.key == 'Enter') {
+      props.searchFunc(searchText, location, selectedLanguage.value)
+    }
+  };
 
   const doSearch = (data: SearchData) => {
     if(data){
       setSearchText(data.searchText);
       setLocation(data.location);
       const selectedLang = languages.find(l => l.value === data.language); 
-      setSelectedLanguage(selectedLang ? selectedLang : defaultLanguage);
-      props.searchFunc(data.searchText, data.location, data.language);
+      const langObj = data.language ? {label: data.language, value: data.language} : defaultLanguage;
+      setSelectedLanguage(selectedLang ? selectedLang : langObj);
+      // props.searchFunc(data.searchText, data.location, data.language);
     }
   }
 
@@ -55,25 +39,26 @@ const Search = (props: SearchProps) => {
       const languages = [{ label: "Any Language", value: "any_language" }];
       langData.languages.map((l: string) => languages.push({ label: l, value: l}));
       setLanguages(languages);
-
-      const savedSearchData = getSavedSearchData();
-      doSearch(savedSearchData);
     })();
-  }, []);
+  },[]);
+
+  useEffect(() => {
+    doSearch(props.searchData);
+  }, [props.searchData.searchText, props.searchData.location, props.searchData.language]);
 
   return (
-    <div style={searchFormStyle}>
-        <Card style={cardStyle}>
+    <div className="search-form">
+        <Card className="card-style">
           <TextField
             label="Job title, skills"
-            variant="outlined"
             value={searchText}
             onChange={ (event) => setSearchText(event.target.value)}
-            id="mui-theme-provider-outlined-input"
+            onKeyPress={handleKeyPress}
+            className="form-input"
             autoFocus={false}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
+                <InputAdornment position="end" className="input-inner-icon">
                   <SearchIcon />
                 </InputAdornment>
               )
@@ -81,13 +66,13 @@ const Search = (props: SearchProps) => {
           />
           <TextField
             label="Location"
-            variant="outlined"
             value={location}
             onChange={ (event) => setLocation(event.target.value)}
-            id="mui-theme-provider-outlined-input"
+            onKeyPress={handleKeyPress}
+            className="form-input"
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
+                <InputAdornment position="end" className="input-inner-icon">
                   <LocationOn />
                 </InputAdornment>
               )
@@ -95,15 +80,16 @@ const Search = (props: SearchProps) => {
           />
           <TextField
             select
-            variant="outlined"
-            label={selectedLanguage.label}
+            label="Language"
             value={selectedLanguage.value}
+            className='language-picker form-input'
             onChange={(event) => {
               setSelectedLanguage({value: event.target.value, label: event.target.value});
             }}
+            onKeyPress={handleKeyPress}            
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position="start" className="input-inner-icon">
                   <Flag />
                 </InputAdornment>
               )
@@ -116,7 +102,11 @@ const Search = (props: SearchProps) => {
             ))}
           </TextField>
 
-          <Button variant="contained" color="primary" style={searchBtnStyle} onClick={() => props.searchFunc(searchText, location, selectedLanguage.value)}>
+          <Button 
+          variant="contained" 
+          color="secondary" 
+          className="search-btn" 
+          onClick={() => props.searchFunc(searchText, location, selectedLanguage.value)}>
             Search
           </Button>
         </Card>

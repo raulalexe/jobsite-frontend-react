@@ -7,13 +7,27 @@ const advertismentsContainerStyles = {
   backgroundRepeat: 'no-repeat',
   backgroundAttachment: 'fixed',
   backgroundSize: 'cover',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column' as 'column'
+}
 
+const textWrapperStyles = {
+  width: '80%',
+  margin: '0 auto',
+  color: '#fff',
+  textAlign: 'center' as 'center'
 }
 
 const Advertisments = (props: any) => {
   return (
     <div style={advertismentsContainerStyles}>
-      test
+      <div style={textWrapperStyles}>
+        <h2>
+          Your advertisment can be here! Contact us for details.
+        </h2>
+      </div>
     </div>
   );
 }

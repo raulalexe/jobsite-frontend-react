@@ -1,0 +1,9 @@
+.maintenance{
+  margin: 100px auto;
+  max-width: 60%;
+}
+
+.maintenance .header-text{
+  font-size: 1.5rem;
+}
+

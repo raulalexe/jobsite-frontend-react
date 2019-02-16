@@ -1,0 +1,10 @@
+.link {
+  opacity: 0.8;
+  color: #9D9D9D;
+}
+
+@media screen and (max-width: 460px){
+  .link.hidden-small-screen{
+    display: none;
+  }
+}
